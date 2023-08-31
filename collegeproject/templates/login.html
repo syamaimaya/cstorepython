@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+... This is the sign in page ...
+{% endblock %}
+{% block title %}
+--login here--
+{% endblock %}
+{% block content %}
+<div class style="login_page"><center>
+<div class="container col-md-6 col-md-offset-2">
+        <form method="POST" style="border:1px solid black; margin:4%; padding:10%; border-radius:1%;">
+            {% csrf_token %}
+                <div class="text-center">
+              {{form.as_p}}
+                   <button style="background-color:#F4EB16; color:blue;" class="btn btn-outline-info" type="submit">Login</button><br>
+                    <div><br>
+                        <a href="{% url 'Cstoreapp:register' %}">Don't have account, Sign up</a></div>
+                    </div><br>
+            {%for msg in messages %}
+            <h6>{{msg}}</h6>
+{% endfor %}
+        </form>
+</div>
+ </center>
+</div>
+
+{% endblock %}

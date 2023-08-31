@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+... This is the sign up page ...
+{% endblock %}
+{% block title %}
+Register here
+{% endblock %}
+{% block content %}
+<div class style="register_page">
+<!--<div class="content-section col-md-8 col-md-offset-2">-->
+    <div class="container col-md-6 text-center">
+    <h1> Sign up </h1>
+        <form action="register" method="POST" style="border:2px solid black; margin:4%; padding:5%; border-radius:2%;">
+            {% csrf_token %}
+                {{form.as_p}}
+            <div class="text-center">
+                    <button style="background-color:#F4EB16; color:blue;" class="btn btn-primary" type="submit">Sign up</button><br>
+               </div><br>
+            <br>
+            {%for msg in messages %}
+            <h6>{{msg}}</h6>
+            {% endfor %}
+        </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% if department %}
+{{department.name|truncatewords:155}}
+{% else %}
+Welcome to Edustore where you can buy academics items...
+{% endif %}
+{% endblock %}
+
+{% block title %}
+{% if department %}
+{{department.name}} - Edustore
+{% else %}
+See the products - Edustore
+{% endif %}
+{% endblock %}
+{% block content %}
+<div>
+    <div class="row my_row_class">
+        <div class="mx_auto">
+<div><br>
+    <img src="{% static 'img/EDUSTORE.png'%}" alt="Our Edutore" width="1830px" height="600px">
+</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

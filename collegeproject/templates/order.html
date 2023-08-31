@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+... This is a order form ..
+<meta charset="UTF-8" />
+           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% endblock %}
+{% block title %}
+Order here
+{% endblock %}
+{% block content %}
+<script type = "text/javascript">
+ myFunction(){
+alert("Order placed Successfully");
+         }
+ </script>
+    <div class= "col-sm-12 col-md-12 col-lg-12">
+<div style="background-color:orange;">
+              <div class="container-fluid">
+                  <h1 align="center">Order Form</h1>
+
+                <form action="{% url 'Cstoreapp:status' %}" method="post" style="width:100%; padding:12px 20px; margin:8px 0; box-sizing:border-box;">
+                    {% csrf_token %}
+            <label> <b>Name </b> </label><br>
+                    <input type="text" placeholder="Enter your name" name="name" required style="width:100%; padding:12px 20px; box-sizing:border-box;"><br>
+                    <label> <b>DOB</b></label><br>
+            <input type="date" name="dob" required style="width:100%; padding:12px 20px;"><br>
+            <label><b> Age</b></label><br>
+            <input type="number" name="age" required style="width:100%; padding:12px 20px;"><br>
+            <label><b>Gender</b></label><br>
+            <input type="radio" name="gender" value="Male">Male
+            <input type="radio" name="gender" value="Female">Female<br>
+             <label><b>E-mail</b></label><br>
+             <input type="email" placeholder="Enter your e-mail" name="email" required style="width:100%; padding:12px 20px;"><br>
+            <label><b>Address</b></label><br>
+            <textarea name="Address"  rows="3" cols="20" style="width:100%; height:100px; box-sizing:border-box;border:2px solid #ccc;resize:none;background-color:#f8f8f8; padding:12px 20px;">
+            </textarea><br>
+
+                      <label><b>Department</b></label>
+                    <select name="department" id="department" style="width:100%; padding:16px 20px;border:none; border-radius:4px; background-color:#f1f1f1">
+                        <option value="0">--choose Dept--</option>
+                       {% for item in data %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                        {% endfor %}
+                    </select><br>
+
+                     <label><b>Course</b></label>
+                    <select name="course" id="course" style="width:100%; padding:16px 20px;border:none; border-radius:4px; background-color:#f1f1f1">
+                       <option value="0">--choose course --</option>
+                       {% for cour in sub %}
+                        <option value="{{cour.department_id}}">{{cour.cname}}</option>
+                        {% endfor %}
+                    </select><br>
+
+                     <label><b>Choose products you want</b></label><br>
+                    {% for product in datas %}
+                    <input type="checkbox" name="product" id="product" value="product">
+                        {{product.pname}}<br>
+                        {% endfor %}
+                    <br>
+        <center>
+            <button class="btn btn-secondary btn-block my_custom_button">Submit</button>
+            <a href="{% url 'Cstoreapp:dept' %}" class="btn btn-secondary btn-block my_custom_button">Logout</a>
+         </center>
+        </form>
+</div>
+
+{% endblock %}
